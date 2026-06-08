@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m venv .venv)",
+      "Bash(.venv/bin/pip install *)",
+      "Bash(.venv/bin/playwright install *)",
+      "Bash(.venv/bin/python3 -c \"from playwright.sync_api import sync_playwright; from docx import Document; from bs4 import BeautifulSoup; print\\('All imports OK'\\)\")",
+      "Bash(.venv/bin/python src/collect.py http://www.meech.com)",
+      "Bash(.venv/bin/python src/report.py meech.com)",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('output/meech.com/raw/data.json'\\)\\); print\\(json.dumps\\(d['pagespeed'], indent=2\\)\\)\")",
+      "Bash(open /Users/oksanalu/dev/website-audit/output/meech.com)",
+      "Bash(gh auth *)",
+      "Bash(curl --version)",
+      "Bash(curl -sL https://github.com/cli/cli/releases/download/v2.50.0/gh_2.50.0_macOS_amd64.tar.gz -o /tmp/gh.tar.gz)",
+      "Bash(tar -xzf /tmp/gh.tar.gz -C /tmp)",
+      "Bash(sudo mv /tmp/gh_2.50.0_macOS_amd64/bin/gh /usr/local/bin/gh)",
+      "Bash(gh --version)",
+      "Bash(curl -sL \"https://github.com/cli/cli/releases/download/v2.50.0/gh_2.50.0_macOS_amd64.zip\" -o /tmp/gh.zip)",
+      "Bash(unzip -o /tmp/gh.zip -d /tmp/gh_cli)",
+      "Read(//tmp/**)",
+      "Bash(sudo mv /tmp/gh_cli/gh_2.50.0_macOS_amd64/bin/gh /usr/local/bin/gh)",
+      "Bash(mkdir -p ~/bin)",
+      "Bash(cp /tmp/gh_cli/gh_2.50.0_macOS_amd64/bin/gh ~/bin/gh)",
+      "Bash(~/bin/gh --version)",
+      "Bash(curl -sL \"https://github.com/cli/cli/releases/download/v2.50.0/gh_2.50.0_macOS_arm64.zip\" -o /tmp/gh_arm.zip)",
+      "Bash(unzip -o /tmp/gh_arm.zip -d /tmp/gh_arm)",
+      "Bash(cp /tmp/gh_arm/gh_2.50.0_macOS_arm64/bin/gh ~/bin/gh)",
+      "Bash(git init *)",
+      "Bash(git config *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

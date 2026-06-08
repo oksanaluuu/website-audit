@@ -1,0 +1,94 @@
+{
+  "executive_summary": "3-4 sentence overview. What is the site's biggest strength? What are the top 2-3 conversion blockers? What is the single most important improvement?",
+
+  "visual_design": [
+    {
+      "issue": "One sentence description of the visual or UX problem",
+      "impact": "Why this hurts conversions or credibility for a manufacturing buyer",
+      "suggestion": "High-level fix — what to do, not how to code it"
+    }
+  ],
+
+  "navigation": [
+    {
+      "issue": "",
+      "impact": "",
+      "suggestion": ""
+    }
+  ],
+
+  "product_catalog": [
+    {
+      "issue": "",
+      "impact": "",
+      "suggestion": ""
+    }
+  ],
+
+  "rfq_forms": [
+    {
+      "issue": "",
+      "impact": "",
+      "suggestion": ""
+    }
+  ],
+
+  "content_downloads": [
+    {
+      "issue": "",
+      "impact": "",
+      "suggestion": ""
+    }
+  ],
+
+  "seo_data_summary": {
+    "meta_title": "Paste the actual meta title from data.json",
+    "meta_description": "Paste the actual meta description from data.json",
+    "h1s": ["list", "of", "h1s"],
+    "images_missing_alt_count": 0
+  },
+
+  "seo": [
+    {
+      "issue": "",
+      "impact": "",
+      "suggestion": ""
+    }
+  ],
+
+  "mobile": [
+    {
+      "issue": "",
+      "impact": "",
+      "suggestion": ""
+    }
+  ],
+
+  "competitor_intro": "1-2 sentences introducing the benchmarking section. Frame it as: here is what leading players in your space are doing that you are not.",
+
+  "competitors": [
+    {
+      "name": "Competitor company name and website",
+      "observation": "2-3 sentences: what specific feature or practice they have that the client lacks, and why it matters"
+    }
+  ],
+
+  "quick_wins": [
+    {
+      "priority": "High / Medium / Low",
+      "issue": "Short label for the issue",
+      "effort": "Small / Medium / Large",
+      "impact": "Short description of expected conversion impact"
+    }
+  ],
+
+  "next_steps_intro": "1-2 sentences. Acknowledge we've identified a clear path forward. Invite them to go deeper.",
+
+  "next_steps": [
+    "Quick wins: implement the High-priority items from the table above",
+    "Strategy session: schedule a 30-minute call to walk through a redesign roadmap",
+    "Benchmark review: see how a redesigned version of your site would compare to top competitors"
+  ],
+
+  "call_to_action": "One compelling sentence inviting them to book a call. Warm, not pushy."
+}
