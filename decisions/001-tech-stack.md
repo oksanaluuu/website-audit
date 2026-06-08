@@ -27,3 +27,13 @@ Python + Playwright for data collection. Claude Code (subscription) for analysis
 - Client can edit the document after receiving it
 - PDF would require a rendering step and isn't editable
 - Google Docs API requires OAuth credentials and a Cloud project
+
+## GitHub & Version Control
+- `gh` CLI installed to `~/bin/gh` (no sudo, no Homebrew needed)
+- `~/bin` added permanently to `$PATH` via `~/.zshrc`
+- Repo: `https://github.com/oksanaluuu/website-audit`
+- See `decisions/007-github-setup.md` for full detail
+
+## PageSpeed (updated)
+- Switched from REST API (rate-limited) to browser-based via Playwright
+- See `decisions/005-pagespeed-browser.md` for full detail

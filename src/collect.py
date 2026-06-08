@@ -35,8 +35,8 @@ def get_domain(url: str) -> str:
     return parsed.netloc.lstrip("www.")
 
 
-def make_output_dir(domain: str) -> Path:
-    base = Path(__file__).parent.parent / "output" / domain / "raw"
+def make_output_dir(client_name: str, date_str: str) -> Path:
+    base = Path(__file__).parent.parent / "output" / client_name / date_str / "raw"
     base.mkdir(parents=True, exist_ok=True)
     return base
 
@@ -255,14 +255,17 @@ def get_pagespeed_browser(context, url: str, output_dir: Path) -> dict:
     return results
 
 
-def collect(url: str):
+def collect(url: str, client_name: str = ""):
     if not url.startswith("http"):
         url = "https://" + url
 
     domain = get_domain(url)
-    output_dir = make_output_dir(domain)
+    client_name = client_name.strip() or domain
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    output_dir = make_output_dir(client_name, date_str)
 
     print(f"\nStarting audit data collection for: {url}")
+    print(f"Client: {client_name}")
     print(f"Output directory: {output_dir}\n")
 
     pages_data = {}
@@ -315,6 +318,8 @@ def collect(url: str):
         "collected_at": datetime.now().isoformat(),
         "url": url,
         "domain": domain,
+        "client_name": client_name,
+        "date": date_str,
         "pages": {
             page_type: {
                 "url": pages_data[page_type]["url"],
@@ -343,6 +348,7 @@ def collect(url: str):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python src/collect.py <url>")
+        print("Usage: python src/collect.py <url> [\"Client Name\"]")
         sys.exit(1)
-    collect(sys.argv[1])
+    client = sys.argv[2] if len(sys.argv) > 2 else ""
+    collect(sys.argv[1], client)

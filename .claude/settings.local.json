@@ -28,7 +28,14 @@
       "Bash(git init *)",
       "Bash(git config *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(~/bin/gh auth *)",
+      "Bash(~/bin/gh repo *)",
+      "Bash(echo 'export PATH=\"$HOME/bin:$PATH\"' >> ~/.zshrc && echo \"Done\")",
+      "Bash(git push *)"
+    ],
+    "additionalDirectories": [
+      "/Users/oksanalu"
     ]
   }
 }

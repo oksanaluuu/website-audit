@@ -1,64 +1,59 @@
 # Backlog — Website Audit Assistant
 
-## Sprint 1 — Data Collection Layer
-*Goal: Run a URL and get all raw data saved locally.*
-
-- [ ] Project scaffold: folder structure, `requirements.txt`, `.env.example`
-- [ ] `collect.py` — main entry point, accepts URL as argument
-- [ ] Playwright: full-page HTML scrape
-- [ ] Playwright: desktop screenshot (1280px)
-- [ ] Playwright: mobile screenshot (375px)
-- [ ] Playwright: crawl key sub-pages (products, contact, about)
-- [ ] HTML parser: extract meta title, meta description, H1–H3, image alt text
-- [ ] HTML parser: detect and extract forms (fields, labels, CTAs)
-- [ ] HTML parser: detect downloadable assets (PDFs, brochures)
-- [ ] HTML parser: extract navigation structure
-- [ ] PageSpeed Insights API: fetch desktop + mobile scores and Core Web Vitals
-- [ ] Save all output to `/output/<domain>/raw/` as structured JSON + images
+## Sprint 1 — Data Collection Layer ✅ DONE
+- [x] Project scaffold: folder structure, `requirements.txt`, `.env.example`
+- [x] `collect.py` — main entry point, accepts URL + optional client name
+- [x] Playwright: full-page HTML scrape
+- [x] Playwright: desktop screenshot (1280px)
+- [x] Playwright: mobile screenshot (375px)
+- [x] Playwright: crawl key sub-pages (products, contact, about)
+- [x] HTML parser: extract meta title, meta description, H1–H3, image alt text
+- [x] HTML parser: detect and extract forms (fields, labels, CTAs)
+- [x] HTML parser: detect downloadable assets (PDFs, brochures)
+- [x] HTML parser: extract navigation structure
+- [x] PageSpeed via browser (pagespeed.web.dev) — mobile + desktop screenshots + score
+- [x] Save all output to `/output/{Client Name}/{date}/raw/`
 
 ---
 
-## Sprint 2 — Analysis Workflow
-*Goal: Claude Code reads raw data and produces structured audit findings.*
-
-- [ ] Define analysis prompt template covering all 9 audit sections
-- [ ] Manufacturing-specific evaluation criteria (product catalog, RFQ, brochures)
-- [ ] Competitor research: auto-search 2–3 competitors based on industry + location
-- [ ] Per-section finding format: issue → impact → suggested fix
-- [ ] Quick wins scoring: prioritize by effort vs. impact
-- [ ] Save structured findings to `/output/<domain>/findings.json`
+## Sprint 2 — Analysis Workflow ✅ DONE
+- [x] Analysis prompt template in `prompts/analyze.md`
+- [x] findings.json schema in `prompts/findings-schema.json`
+- [x] Manufacturing-specific evaluation criteria (`decisions/003-analysis-scope.md`)
+- [x] Per-section finding format: issue → impact → suggestion
+- [x] Quick wins table with priority/effort/impact
+- [x] Tested end-to-end on meech.com
 
 ---
 
-## Sprint 3 — Report Generation
-*Goal: Turn findings into a formatted, shareable `.docx` file.*
-
-- [ ] `report.py` — generates `.docx` from findings JSON
-- [ ] Document template: cover page, header, footer with agency branding
-- [ ] Section formatting: headings, body text, callout boxes
-- [ ] Embed screenshots (desktop + mobile) with captions
-- [ ] Quick Wins table (priority, effort, impact)
-- [ ] Next Steps section with call invitation
-- [ ] Save to `/output/<domain>/audit_<domain>_<date>.docx`
+## Sprint 3 — Report Generation ✅ DONE
+- [x] `report.py` — generates `.docx` from findings.json
+- [x] Cover page with client domain + date + agency name
+- [x] All 11 sections formatted with headings and finding blocks
+- [x] Screenshots embedded: homepage desktop/mobile, products, contact, PageSpeed
+- [x] Quick Wins table with colour header
+- [x] Next Steps + call invitation CTA
 
 ---
 
-## Sprint 4 — Polish & Manufacturing Specifics
-*Goal: Make the audit smarter about the manufacturing industry.*
-
-- [ ] Product catalog depth: check for filtering, specs, part numbers, datasheets
-- [ ] RFQ form analysis: field count heuristic, friction scoring, missing fields
-- [ ] Industry trust signals: ISO certifications, case studies, client logos
-- [ ] Brochure quality check: file naming, accessibility, CTA after download
-- [ ] Configurable agency name/logo in report header
-- [ ] README with full usage instructions
-- [ ] Error handling: invalid URLs, sites that block scraping, timeouts
+## Sprint 4 — Polish & Hardening 🔄 NEXT
+- [ ] Update `collect.py` to accept optional client name: `python src/collect.py <url> "Client Name"`
+- [ ] Reorganise output to `/output/{Client Name}/{YYYY-MM-DD}/` (see `decisions/006-folder-structure.md`)
+- [ ] Update `report.py` to use new folder structure
+- [ ] Error handling: sites that block headless browsers (add realistic UA + retry)
+- [ ] Error handling: timeout on slow sites (graceful partial output)
+- [ ] Crawl one sample product detail page (not just the catalog overview)
+- [ ] RFQ friction scoring: flag forms with > 7 fields as "high friction"
+- [ ] Product catalog depth check: detect missing specs, missing images, no CTA
+- [ ] Industry trust signal check: look for ISO/ATEX/CE certifications in HTML
+- [ ] Configurable agency logo in report cover page
+- [ ] `README.md` — finalise with Sprint 4 usage examples
 
 ---
 
 ## Icebox (Future Ideas)
-
 - Multi-language support for non-English manufacturing sites
+- Scoring system (0–100) per section with a summary scorecard
+- Before/after mockup sketch suggestion for one key page
 - Automatic email draft with audit attached
-- Scoring system (0–100) for each section
-- Before/after mockup suggestion for one key page
+- Competitor URL auto-detection (web search for "top competitors of X")

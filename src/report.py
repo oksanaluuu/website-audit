@@ -335,11 +335,13 @@ def generate_report(domain: str, data: dict, findings: dict, output_path: Path):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python src/report.py <domain>")
+        print("Usage: python src/report.py \"Client Name\" [YYYY-MM-DD]")
+        print("  Date defaults to today if not provided.")
         sys.exit(1)
 
-    domain = sys.argv[1].lstrip("www.")
-    base = Path(__file__).parent.parent / "output" / domain
+    client_name = sys.argv[1]
+    date_str = sys.argv[2] if len(sys.argv) > 2 else datetime.now().strftime("%Y-%m-%d")
+    base = Path(__file__).parent.parent / "output" / client_name / date_str
 
     data_path = base / "raw" / "data.json"
     findings_path = base / "findings.json"
@@ -357,8 +359,9 @@ def main():
     data = json.loads(data_path.read_text(encoding="utf-8"))
     findings = json.loads(findings_path.read_text(encoding="utf-8"))
 
-    date_str = datetime.now().strftime("%Y-%m-%d")
-    output_path = base / f"audit_{domain}_{date_str}.docx"
+    domain = data.get("domain", client_name.lower().replace(" ", "-"))
+    slug = client_name.lower().replace(" ", "-")
+    output_path = base / f"audit_{slug}_{date_str}.docx"
 
     generate_report(domain, data, findings, output_path)
 
